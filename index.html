@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parse SecurityCheck logs into Reddit-ready Markdown locally in your browser.">
+    <title>SecurityCheck Parser</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header class="site-header">
+            <h1>SECURITYCHECK PARSER</h1>
+            <p class="subtitle">Upload SecurityCheck log</p>
+        </header>
+
+        <section aria-label="Upload SecurityCheck report" class="upload-section">
+            <div class="drop-zone" id="dropZone" role="button" tabindex="0" aria-label="Drag and drop a SecurityCheck log here or click to browse">
+                <svg class="upload-icon" viewBox="0 0 32 32" aria-hidden="true">
+                    <path d="M16 21V5m0 0-6 6m6-6 6 6" />
+                    <path d="M5 19v7a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2v-7" />
+                </svg>
+                <p class="drop-text">drag and drop the log here; or click to browse</p>
+                <input type="file" id="fileInput" accept=".txt,.log,text/plain" aria-label="Choose a SecurityCheck log">
+            </div>
+
+            <p class="inline-message" id="fileMessage" role="status" aria-live="polite" hidden></p>
+
+            <div class="file-list" id="fileList" aria-live="polite"></div>
+
+            <button class="btn btn-parse" id="parseBtn" type="button" disabled>PARSE SECURITY CHECK</button>
+            <p class="inline-message process-message" id="processMessage" role="status" aria-live="polite" hidden></p>
+        </section>
+
+        <section class="results" id="results" aria-labelledby="resultsHeading">
+            <h2 id="resultsHeading">GENERATED OUTPUT</h2>
+
+            <div class="empty-output" id="emptyOutput">
+                <svg viewBox="0 0 36 36" aria-hidden="true">
+                    <path d="M21 4H9a3 3 0 0 0-3 3v22a3 3 0 0 0 3 3h18a3 3 0 0 0 3-3V13Z" />
+                    <path d="M21 4v9h9M12 21h12M12 26h8" />
+                </svg>
+                <p>Your parsed report will appear here</p>
+            </div>
+
+            <div class="generated-output" id="generatedOutput" hidden>
+                <div class="output-tabs" role="tablist" aria-label="Generated output view">
+                    <button class="output-tab active" id="markdownTab" type="button" role="tab" aria-selected="true" aria-controls="markdownPanel" data-tab="markdown">Markdown</button>
+                    <button class="output-tab" id="previewTab" type="button" role="tab" aria-selected="false" aria-controls="previewPanel" data-tab="preview">Preview</button>
+                </div>
+
+                <div class="output-panel markdown-panel" id="markdownPanel" role="tabpanel" aria-labelledby="markdownTab">
+                    <pre class="markdown-content" id="markdownContent" tabindex="0"></pre>
+                </div>
+
+                <div class="output-panel preview-panel" id="previewPanel" role="tabpanel" aria-labelledby="previewTab" hidden>
+                    <article class="reddit-preview" id="redditPreview" aria-label="Rendered Reddit post preview"></article>
+                </div>
+
+                <button class="btn btn-copy" id="copyBtn" type="button">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="8" y="8" width="12" height="12" rx="1" />
+                        <path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" />
+                    </svg>
+                    <span>COPY OUTPUT</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script src="parser.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,563 @@
+:root {
+    color-scheme: dark;
+    --page-bg: #3c3c3c;
+    --panel-bg: #171717;
+    --surface: #1f1f1f;
+    --surface-raised: #242424;
+    --cream: #e8e0d8;
+    --muted: #888888;
+    --line: #444444;
+    --blue: #0078d4;
+    --blue-hover: #0789ed;
+    --green: #00cc66;
+    --red: #ff5b5b;
+    --body-font: "IBM Plex Sans", "Segoe UI", Tahoma, sans-serif;
+    --mono-font: "JetBrains Mono", Consolas, monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--page-bg);
+    color: var(--cream);
+    font-family: var(--body-font);
+    line-height: 1.6;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    padding: 42px 46px;
+    background: var(--panel-bg);
+    border: 8px solid var(--cream);
+    box-shadow: 16px 16px 0 #0a0a0a;
+}
+
+.site-header {
+    margin-bottom: 30px;
+}
+
+h1 {
+    padding-bottom: 10px;
+    border-bottom: 4px solid var(--cream);
+    color: var(--blue);
+    font-family: var(--mono-font);
+    font-size: clamp(1.55rem, 4vw, 2.4rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.subtitle {
+    margin-top: 6px;
+    color: #c1c1c1;
+    font-size: 0.95rem;
+}
+
+.drop-zone {
+    position: relative;
+    display: flex;
+    min-height: 176px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    padding: 30px 20px;
+    border: 2px dashed var(--blue);
+    background: #111111;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.drop-zone:hover,
+.drop-zone:focus-visible,
+.drop-zone.dragover {
+    border-color: var(--blue-hover);
+    background: #1b2228;
+    outline: none;
+}
+
+.upload-icon {
+    width: 31px;
+    height: 31px;
+    fill: none;
+    stroke: var(--cream);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.drop-text {
+    color: var(--cream);
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+#fileInput {
+    display: none;
+}
+
+.file-list {
+    margin: 16px 0 18px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    min-width: 0;
+    padding: 13px 14px;
+    border: 1px solid #66615b;
+    background: var(--surface);
+}
+
+.file-details {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.file-icon {
+    width: 20px;
+    height: 23px;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: #29a9ff;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.file-text {
+    min-width: 0;
+}
+
+.file-name {
+    color: var(--cream);
+    font-size: 0.92rem;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.file-meta {
+    margin-top: 2px;
+    color: #adadad;
+    font-size: 0.78rem;
+    overflow-wrap: anywhere;
+}
+
+.remove-btn {
+    display: inline-flex;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    color: #a9a9a9;
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease;
+}
+
+.remove-btn:hover,
+.remove-btn:focus-visible {
+    background: #2a2a2a;
+    color: var(--cream);
+    outline: 1px solid #777777;
+}
+
+.remove-btn svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+}
+
+.btn {
+    display: inline-flex;
+    width: 100%;
+    min-height: 54px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 22px;
+    border: 3px solid var(--cream);
+    background: #242424;
+    color: var(--cream);
+    cursor: pointer;
+    font-family: var(--mono-font);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background 0.18s ease, border-color 0.18s ease, opacity 0.18s ease;
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--blue-hover);
+    outline-offset: 3px;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.34;
+}
+
+.btn-parse {
+    margin-top: 2px;
+    border-color: var(--blue);
+    background: var(--blue);
+    color: #ffffff;
+}
+
+.btn-parse:hover:not(:disabled),
+.btn-copy:hover:not(:disabled) {
+    border-color: var(--blue-hover);
+    background: var(--blue-hover);
+}
+
+.btn svg {
+    width: 21px;
+    height: 21px;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.spinner {
+    width: 17px;
+    height: 17px;
+    border: 2px solid rgb(255 255 255 / 40%);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.inline-message {
+    margin-top: 10px;
+    color: #b8b8b8;
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+}
+
+.inline-message.error {
+    color: #ff7777;
+}
+
+.inline-message.success {
+    color: var(--green);
+}
+
+.results {
+    margin-top: 34px;
+}
+
+.results h2 {
+    margin-bottom: 20px;
+    color: var(--cream);
+    font-family: var(--mono-font);
+    font-size: 1.12rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.empty-output {
+    display: flex;
+    min-height: 128px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 11px;
+    padding: 25px 18px;
+    border: 1px solid #444444;
+    background: #202020;
+    text-align: center;
+}
+
+.empty-output svg {
+    width: 29px;
+    height: 29px;
+    fill: none;
+    stroke: #777777;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.empty-output p {
+    color: var(--cream);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.output-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 12px;
+    border: 2px solid #555555;
+    background: #202020;
+}
+
+.output-tab {
+    min-height: 43px;
+    padding: 9px 14px;
+    border: 0;
+    background: transparent;
+    color: #adadad;
+    cursor: pointer;
+    font-family: var(--mono-font);
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.output-tab + .output-tab {
+    border-left: 2px solid #555555;
+}
+
+.output-tab:hover {
+    color: var(--cream);
+    background: #292929;
+}
+
+.output-tab.active {
+    background: var(--blue);
+    color: #ffffff;
+}
+
+.output-tab:focus-visible {
+    outline: 2px solid var(--blue-hover);
+    outline-offset: -3px;
+}
+
+.output-panel {
+    min-width: 0;
+    margin-bottom: 15px;
+    border: 1px solid #555555;
+}
+
+.markdown-panel {
+    background: #202020;
+}
+
+.markdown-content {
+    max-height: 570px;
+    min-height: 250px;
+    overflow: auto;
+    padding: 18px;
+    color: #d8e6f3;
+    font-family: var(--mono-font);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    word-break: break-word;
+    user-select: text;
+}
+
+.markdown-content:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: -2px;
+}
+
+.preview-panel {
+    background: #202020;
+}
+
+.reddit-preview {
+    max-height: 570px;
+    min-height: 250px;
+    overflow: auto;
+    padding: 22px 24px;
+    background: #202020;
+    color: var(--cream);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.94rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+}
+
+.reddit-preview p {
+    margin: 0;
+}
+
+.reddit-preview .preview-heading {
+    font-weight: 700;
+}
+
+.reddit-preview .preview-note {
+    font-style: italic;
+}
+
+.preview-list {
+    margin: 0;
+    padding-left: 24px;
+}
+
+.preview-list li {
+    padding-left: 1px;
+    margin: 0 0 3px;
+}
+
+.reddit-preview a {
+    color: #29a9ff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.reddit-preview a:hover {
+    color: #78ccff;
+}
+
+.preview-spacer {
+    height: 0.9em;
+}
+
+.btn-copy {
+    border-color: var(--blue);
+    background: var(--blue);
+    color: #ffffff;
+}
+
+.btn-copy:disabled {
+    opacity: 0.45;
+}
+
+.copy-fallback {
+    position: fixed;
+    top: 0;
+    left: -9999px;
+    opacity: 0;
+}
+
+@media (max-width: 768px) {
+    body {
+        align-items: flex-start;
+        padding: 25px 16px;
+    }
+
+    .container {
+        padding: 29px 25px;
+        border-width: 5px;
+        box-shadow: 12px 12px 0 #0a0a0a;
+    }
+
+    .drop-zone {
+        min-height: 160px;
+        padding: 26px 16px;
+    }
+
+    .drop-text {
+        font-size: 0.95rem;
+    }
+
+    .markdown-content,
+    .reddit-preview {
+        max-height: 520px;
+        padding: 15px;
+        font-size: 0.78rem;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 14px 10px;
+    }
+
+    .container {
+        padding: 21px 15px;
+        border-width: 4px;
+        box-shadow: 8px 8px 0 #0a0a0a;
+    }
+
+    .site-header {
+        margin-bottom: 22px;
+    }
+
+    h1 {
+        letter-spacing: -0.5px;
+    }
+
+    .file-item {
+        padding: 10px;
+    }
+
+    .file-details {
+        gap: 8px;
+    }
+
+    .file-meta {
+        font-size: 0.7rem;
+    }
+
+    .btn {
+        min-height: 50px;
+        padding: 12px 10px;
+        font-size: 0.84rem;
+        letter-spacing: 0.4px;
+    }
+
+    .results {
+        margin-top: 27px;
+    }
+
+    .output-tab {
+        padding: 9px 8px;
+        font-size: 0.78rem;
+    }
+
+    .markdown-content,
+    .reddit-preview {
+        min-height: 200px;
+        max-height: 460px;
+        padding: 12px;
+        font-size: 0.74rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
